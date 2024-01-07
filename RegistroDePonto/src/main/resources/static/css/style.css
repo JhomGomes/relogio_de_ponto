@@ -1,0 +1,85 @@
+body {
+    box-sizing: border-box;
+    background-color: #e7e4e4;
+}
+
+.principal {
+    text-align: center;
+}
+
+#titulo {
+    width: calc(50% - 2rem);
+    margin: 3.0em auto;
+    box-sizing: border-box;
+    max-height: 700px;
+}
+
+h1, h2 {
+    color: white;
+}
+
+.main-date {
+    display: flex;
+    justify-content: center;
+    margin: 1.0em auto;
+    box-sizing: border-box;
+    max-height: 700px;
+    margin-top: 3em;
+}
+
+.main-clock {
+    display: flex;
+    justify-content: center;
+    margin: 1.0em auto;
+    box-sizing: border-box;
+    max-height: 700px;
+    margin-top: 1em;
+}
+
+#campoderegistro, #pginicial, #cancelar, .pgcancelar {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    margin-top: 1em;
+    padding: 0.5em;
+}
+
+#entrada, #cancelar {
+    margin-top: 1em;
+}
+
+/* PAGINA ADMINISTRADOR */
+
+.tabela {
+    margin-top: 1em;
+}
+
+#tabela-funcionario {
+    margin: 2em auto !important;
+    padding: 1em !important;
+}
+
+.cards-inferiores {
+    margin: 1em auto !important;
+    padding: 1em !important;
+}
+
+/* Adicione este bloco ao seu CSS para estilizar os botões */
+button {
+    border-radius: 8px;
+    padding: 4px 10px;
+    cursor: pointer;
+}
+
+/* Estilo específico para os botões de atualizar e excluir na tabela */
+#tabela-funcionario button {
+    background-color: #007bff; /* Cor de fundo azul */
+    color: #fff; /* Cor do texto branco */
+    border: none;
+    margin: 2px;
+}
+
+#tabela-funcionario button:hover {
+    background-color: #0056b3; /* Cor de fundo azul mais escura ao passar o mouse */
+}

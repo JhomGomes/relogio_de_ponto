@@ -1,8 +1,6 @@
 package com.example.RegistroDePonto.RegistroDePonto.models;
 
-import com.example.RegistroDePonto.RegistroDePonto.repository.FuncionarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import com.example.RegistroDePonto.RegistroDePonto.Enuns.StatusFuncionario;
 
 import javax.persistence.*;
 
@@ -13,9 +11,15 @@ public class Funcionarios {
     private Long id;
     @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
+    private double salario;
+
     @ManyToOne
     @JoinColumn(name = "cargo", nullable = false)
     private Cargo cargo;
+
+    @Enumerated(EnumType.STRING)
     private StatusFuncionario statusFuncionario;
 
     public Funcionarios() {}
@@ -47,8 +51,6 @@ public class Funcionarios {
     public StatusFuncionario getStatusFuncionario() {
         return statusFuncionario;
     }
-
-
 }
 
 

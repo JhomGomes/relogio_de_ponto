@@ -1,0 +1,52 @@
+head {
+    margin: 0;
+    max-height: 10px;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #840808;
+}
+
+.registro-titulo {
+    font-size: 20px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.data {
+    font-family: 'Roboto';
+    text-align: center;
+    color: #ffffff;
+}
+
+.hora {
+    position: absolute;
+    width: 144px;
+    height: 137px;
+    left: 465px;
+    top: 224px;
+    text-align: center;
+    border: 2px solid white;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+.hours {
+    font-size: 32px;
+    line-height: 70px;
+}
+
+.campo-registro {
+    position: absolute;
+    left: 461px;
+    top: 389px;
+    text-align: center;
+
+}
