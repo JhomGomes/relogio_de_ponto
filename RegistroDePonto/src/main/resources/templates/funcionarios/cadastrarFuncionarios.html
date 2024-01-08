@@ -25,71 +25,73 @@
 <h1>Bem-vindo ao cadastro do usuário</h1>
 <button type="button" class="btn btn-secondary" onclick="window.history.back()">Voltar</button>
 
-<form action="/funcionarios" method="post">
+<form action="/administrador" method="post">
     <div class="container mt-4">
         <form>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Nome">
+                    <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="sobrenome">Sobrenome</label>
-                    <input type="text" class="form-control" id="sobrenome" placeholder="Sobrenome">
+                    <input type="text" class="form-control" id="sobrenome" placeholder="Sobrenome" name="sobrenome">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email">
+                    <input type="email" class="form-control" id="email" placeholder="Email" name="Email">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="telefone">Telefone</label>
-                    <input type="tel" class="form-control" id="telefone" placeholder="Telefone">
+                    <input type="tel" class="form-control" id="telefone" placeholder="Telefone" name="telefone">
                 </div>
             </div>
             <div class="form-group">
                 <label for="endereco">Endereço</label>
-                <input type="text" class="form-control" id="endereco" placeholder="Endereço">
+                <input type="text" class="form-control" id="endereco" placeholder="Endereço" name="endereco">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="cidade">Cidade</label>
-                    <input type="text" class="form-control" id="cidade">
+                    <input type="text" class="form-control" id="cidade" name="cidade">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="estado">Estado</label>
-                    <select id="estado" class="form-control">
-                        <option selected>Escolher...</option>
-                        <option>...</option>
+                    <select id="estado" class="form-control" name="estado">
+                        <option th:each="estado : ${estado}" th:value="${estado}" th:text="${estado}"></option>
                     </select>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="cep">CEP</label>
-                    <input type="text" class="form-control" id="cep">
+                    <input type="text" class="form-control" id="cep" placeholder="Apenas números" pattern="\d*"
+                           name="cep">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="cargo">Cargo</label>
-                    <input type="text" class="form-control" id="cargo" placeholder="Cargo">
+                    <select id="cargo" class="form-control" name="cargo">
+                        <option th:each="cargo : ${cargo}" th:value="${cargo}" th:text="${cargo}"></option>
+                    </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="salario">Salário</label>
-                    <input type="text" class="form-control" id="salario" placeholder="Salário">
+                    <input type="text" class="form-control" id="salario" placeholder="Salário" name="salario">
                 </div>
             </div>
             <!-- Campo para o número de registro -->
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="registro">Número de Registro</label>
-                    <input type="number" class="form-control" id="registro" placeholder="Número de Registro">
+                    <input type="number" class="form-control" id="registro" placeholder="Número de Registro"
+                           pattern="\d*" name="numero_de_registro">
                 </div>
             </div>
             <div>
-                <select id="Status" class="form-control">
-                    <option th:each="status : ${statusFuncionario}"
-                            th:value="${status}" th:text="${status}"></option>
+                <select id="Status" class="form-control" name="statusFuncionario">
+                    <option th:each="status : ${statusFuncionario}" th:value="${status}" th:text="${status}"></option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Cadastrar</button>
