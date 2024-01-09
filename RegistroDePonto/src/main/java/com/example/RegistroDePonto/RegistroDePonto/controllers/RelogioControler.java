@@ -3,6 +3,7 @@ package com.example.RegistroDePonto.RegistroDePonto.controllers;
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.Cargo;
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.Estados;
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.StatusFuncionario;
+import com.example.RegistroDePonto.RegistroDePonto.dto.RequisicaoNovoFuncionario;
 import com.example.RegistroDePonto.RegistroDePonto.models.Funcionarios;
 import com.example.RegistroDePonto.RegistroDePonto.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,10 @@ public class RelogioControler {
     }
 
     @PostMapping("/administrador")
-    public String create(Funcionarios funcionarios) {
+    public String create(RequisicaoNovoFuncionario requisicao) {
+        Funcionarios funcionarios = requisicao.toFuncionario();
+        this.funcionarioRepository.save(funcionarios);
+
         return "redirect:/administrador";
     }
 }

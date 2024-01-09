@@ -1,70 +1,56 @@
-package com.example.RegistroDePonto.RegistroDePonto.models;
+package com.example.RegistroDePonto.RegistroDePonto.dto;
 
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.Cargo;
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.Estados;
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.StatusFuncionario;
+import com.example.RegistroDePonto.RegistroDePonto.models.Funcionarios;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
-public class Funcionarios {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(nullable = false)
+
+public class RequisicaoNovoFuncionario {
+
     private String nome;
 
-    @Column(nullable = false)
     private String sobrenome;
 
-    @Column(nullable = false)
     private String Email;
 
-    @Column(nullable = false)
     private Long telefone;
 
-    @Column(nullable = false)
     private String endereco;
 
-    @Column(nullable = false)
     private String cidade;
 
-    @Column(nullable = false)
     private int cep;
 
-    @Column(nullable = false)
-    private BigDecimal salario;
-
-    @Column(nullable = false)
     private int numero_de_registro;
 
-/*    @ManyToOne
-    @JoinColumn(name = "cargo", nullable = false)
-    private Cargo cargo;*/
 
-    @Enumerated(EnumType.STRING)
-    private Cargo cargo;
-
-    @Enumerated(EnumType.STRING)
     private Estados estado;
 
-    @Enumerated(EnumType.STRING)
     private StatusFuncionario statusFuncionario;
 
-    public Funcionarios() {
-    }
+    private Cargo cargo;
 
-    public StatusFuncionario getStatusFuncionario() {
-        return statusFuncionario;
-    }
+    private BigDecimal salario;
 
-    public void setStatusFuncionario(StatusFuncionario statusFuncionario) {
-        this.statusFuncionario = statusFuncionario;
-    }
+    public Funcionarios toFuncionario() {
+        Funcionarios funcionarios = new Funcionarios();
+        funcionarios.setNome(this.nome);
+        funcionarios.setSobrenome(this.sobrenome);
+        funcionarios.setEmail(this.Email);
+        funcionarios.setTelefone(this.telefone);
+        funcionarios.setEndereco(this.endereco);
+        funcionarios.setCidade(this.cidade);
+        funcionarios.setCep(this.cep);
+        funcionarios.setNumero_de_registro(this.numero_de_registro);
+        funcionarios.setEstado(this.estado);
+        funcionarios.setStatusFuncionario(this.statusFuncionario);
+        funcionarios.setCargo(this.cargo);
+        funcionarios.setSalario(this.salario);
 
-    public Long getId() {
-        return id;
+        return funcionarios;
     }
 
     public String getNome() {
@@ -75,12 +61,36 @@ public class Funcionarios {
         this.nome = nome;
     }
 
+    public Estados getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estados estado) {
+        this.estado = estado;
+    }
+
+    public StatusFuncionario getStatusFuncionario() {
+        return statusFuncionario;
+    }
+
+    public void setStatusFuncionario(StatusFuncionario statusFuncionario) {
+        this.statusFuncionario = statusFuncionario;
+    }
+
     public Cargo getCargo() {
         return cargo;
     }
 
     public void setCargo(Cargo cargo) {
         this.cargo = cargo;
+    }
+
+    public BigDecimal getSalario() {
+        return salario;
+    }
+
+    public void setSalario(BigDecimal salario) {
+        this.salario = salario;
     }
 
     public String getSobrenome() {
@@ -107,10 +117,6 @@ public class Funcionarios {
         this.telefone = telefone;
     }
 
-    public int getNumero_de_registro() {
-        return numero_de_registro;
-    }
-
     public String getEndereco() {
         return endereco;
     }
@@ -127,14 +133,6 @@ public class Funcionarios {
         this.cidade = cidade;
     }
 
-    public Estados getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estados estado) {
-        this.estado = estado;
-    }
-
     public int getCep() {
         return cep;
     }
@@ -143,39 +141,29 @@ public class Funcionarios {
         this.cep = cep;
     }
 
+    public int getNumero_de_registro() {
+        return numero_de_registro;
+    }
+
     public void setNumero_de_registro(int numero_de_registro) {
         this.numero_de_registro = numero_de_registro;
     }
 
-    public BigDecimal getSalario() {
-        return salario;
-    }
-
-    public void setSalario(BigDecimal salario) {
-        this.salario = salario;
-    }
-
     @Override
     public String toString() {
-        return "Funcionarios{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
+        return "RequisicaoNovoFuncionario{" +
+                "nome='" + nome + '\'' +
                 ", sobrenome='" + sobrenome + '\'' +
                 ", Email='" + Email + '\'' +
                 ", telefone=" + telefone +
                 ", endereco='" + endereco + '\'' +
                 ", cidade='" + cidade + '\'' +
                 ", cep=" + cep +
-                ", salario=" + salario +
                 ", numero_de_registro=" + numero_de_registro +
-                ", cargo=" + cargo +
                 ", estado=" + estado +
                 ", statusFuncionario=" + statusFuncionario +
+                ", cargo=" + cargo +
+                ", salario=" + salario +
                 '}';
     }
 }
-
-
-
-
-

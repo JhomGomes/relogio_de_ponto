@@ -111,11 +111,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>nome</td>
-                            <td>Status</td>
-                            <td>Cargo</td>
+                        <tr  th:each="funcionario : ${funcionario}">
+                            <th scope="row" th:text="${funcionario.id}">ID</th>
+                            <td th:text="${funcionario.nome}">nome do colaborador</td>
+                            <td th:text="${funcionario.statusFuncionario.name()}">do colaborador</td>
+                            <td th:text="${funcionario.cargo}">Cargo do colaborador</td>
                             <td>
                                 <button type="button">Atualizar</button>
                             </td>
