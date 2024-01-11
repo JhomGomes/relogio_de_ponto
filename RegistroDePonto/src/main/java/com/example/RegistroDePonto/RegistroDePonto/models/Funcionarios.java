@@ -5,6 +5,9 @@ import com.example.RegistroDePonto.RegistroDePonto.Enuns.Estados;
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.StatusFuncionario;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
@@ -12,9 +15,12 @@ public class Funcionarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false)
     private String nome;
 
+    @NotNull
+    @NotBlank
     @Column(nullable = false)
     private String sobrenome;
 
@@ -33,15 +39,12 @@ public class Funcionarios {
     @Column(nullable = false)
     private int cep;
 
+    @NotNull
+    @NotEmpty
     @Column(nullable = false)
     private BigDecimal salario;
-
     @Column(nullable = false)
     private int numero_de_registro;
-
-/*    @ManyToOne
-    @JoinColumn(name = "cargo", nullable = false)
-    private Cargo cargo;*/
 
     @Enumerated(EnumType.STRING)
     private Cargo cargo;

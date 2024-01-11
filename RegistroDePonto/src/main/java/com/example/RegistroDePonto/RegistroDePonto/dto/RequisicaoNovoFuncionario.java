@@ -4,28 +4,51 @@ import com.example.RegistroDePonto.RegistroDePonto.Enuns.Cargo;
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.Estados;
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.StatusFuncionario;
 import com.example.RegistroDePonto.RegistroDePonto.models.Funcionarios;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-
 
 public class RequisicaoNovoFuncionario {
 
+    @NotBlank
     private String nome;
 
+    @NotNull
+    @NotBlank
     private String sobrenome;
 
+    @NotBlank
+    @NotEmpty
+    @javax.validation.constraints.Email
     private String Email;
 
+    @NotNull
+    @NotEmpty
     private Long telefone;
 
+    @NotBlank
+    @NotEmpty
     private String endereco;
 
+    @NotBlank
+    @NotEmpty
     private String cidade;
 
+    /*@NotNull
+    @NotEmpty*/
+    //@DecimalMin(value = "0.01", inclusive = false)
+    @NotNull
+    @NotEmpty
     private int cep;
 
+    @NotNull
     private int numero_de_registro;
-
 
     private Estados estado;
 
@@ -33,7 +56,32 @@ public class RequisicaoNovoFuncionario {
 
     private Cargo cargo;
 
+    @NotNull
+    @DecimalMin(value = "0.00")
     private BigDecimal salario;
+
+/*    public Funcionarios toFuncionario() {
+
+        if (telefone == null && !nome.isEmpty()  && nome == null && sobrenome == null && salario == null) {
+            throw new IllegalArgumentException("Campos obrigatórios não podem ser nulos.");
+        }
+
+        Funcionarios funcionarios = new Funcionarios();
+        funcionarios.setNome(this.nome);
+        funcionarios.setSobrenome(this.sobrenome);
+        funcionarios.setEmail(this.Email);
+        funcionarios.setTelefone(this.telefone);
+        funcionarios.setEndereco(this.endereco);
+        funcionarios.setCidade(this.cidade);
+        funcionarios.setCep(this.cep);
+        funcionarios.setNumero_de_registro(this.numero_de_registro);
+        funcionarios.setEstado(this.estado);
+        funcionarios.setStatusFuncionario(this.statusFuncionario);
+        funcionarios.setCargo(this.cargo);
+        funcionarios.setSalario(this.salario);
+
+        return funcionarios;
+    }*/
 
     public Funcionarios toFuncionario() {
         Funcionarios funcionarios = new Funcionarios();

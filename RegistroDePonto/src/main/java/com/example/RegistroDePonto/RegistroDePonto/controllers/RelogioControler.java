@@ -9,13 +9,17 @@ import com.example.RegistroDePonto.RegistroDePonto.repository.FuncionarioReposit
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@Validated
 public class RelogioControler {
 
     @Autowired
@@ -29,8 +33,8 @@ public class RelogioControler {
         return mv;
     }
 
-    @GetMapping("/funcionario")
-    public ModelAndView nnew() {
+    @GetMapping("/funcionario")//jogar funcionario para o plural
+    public ModelAndView nnew(RequisicaoNovoFuncionario requisicao) {
         ModelAndView mv = new ModelAndView("funcionarios/cadastrarFuncionarios");
         mv.addObject("statusFuncionario", StatusFuncionario.values());
         mv.addObject("cargo", Cargo.values());
@@ -38,11 +42,48 @@ public class RelogioControler {
         return mv;
     }
 
-    @PostMapping("/administrador")
-    public String create(RequisicaoNovoFuncionario requisicao) {
-        Funcionarios funcionarios = requisicao.toFuncionario();
-        this.funcionarioRepository.save(funcionarios);
+/*    @PostMapping("/administrador")
+    public ModelAndView create(@Valid RequisicaoNovoFuncionario requisicao, BindingResult bindingResult) {
+        System.out.println(requisicao);
+        if (bindingResult.hasErrors()) {
+            System.out.println("-------------------TEM ERROS--------------------------");
+            ModelAndView mv = new ModelAndView("funcionarios/cadastrarFuncionarios");
+            mv.addObject("statusFuncionario", StatusFuncionario.values());
+            mv.addObject("cargo", Cargo.values());
+            mv.addObject("estado", Estados.values());
+            return mv;
+        } else {
+            try {
+                Funcionarios funcionarios = requisicao.toFuncionario();
+                this.funcionarioRepository.save(funcionarios);
+                return new ModelAndView("redirect:/administrador");
+            } catch (Exception e) {
+                // Lide com a exceção de maneira adequada (pode logar, mostrar mensagem ao usuário, etc.)
+                ModelAndView mv = new ModelAndView("funcionarios/cadastrarFuncionarios");
+                mv.addObject("statusFuncionario", StatusFuncionario.values());
+                mv.addObject("cargo", Cargo.values());
+                mv.addObject("estado", Estados.values());
+                mv.addObject("error", "Erro ao criar o funcionário.");
+                return mv;
+            }
+        }
+    }*/
 
-        return "redirect:/administrador";
+    @PostMapping("/administrador")
+    public ModelAndView create(@Valid RequisicaoNovoFuncionario requisicao, BindingResult bindingResult)  {
+        System.out.println(requisicao);
+        if(bindingResult.hasErrors()){
+            System.out.println("-------------------TEM ERROS--------------------------");
+            System.out.println(requisicao);
+            ModelAndView mv = new ModelAndView("funcionarios/cadastrarFuncionarios");
+            mv.addObject("statusFuncionario", StatusFuncionario.values());
+            mv.addObject("cargo", Cargo.values());
+            mv.addObject("estado", Estados.values());
+            return mv;
+        }else {
+            Funcionarios funcionarios = requisicao.toFuncionario();
+            this.funcionarioRepository.save(funcionarios);
+            return new ModelAndView("redirect:/administrador");
+        }
     }
 }
