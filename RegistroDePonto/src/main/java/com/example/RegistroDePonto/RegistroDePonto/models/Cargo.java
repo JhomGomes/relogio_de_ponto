@@ -1,7 +1,5 @@
 package com.example.RegistroDePonto.RegistroDePonto.models;
 
-import org.w3c.dom.stylesheets.LinkStyle;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,7 +12,7 @@ public class Cargo {
 
 
     @OneToMany(mappedBy = "cargo")
-    private List<Funcionarios> funcionarios;
+    private List<FuncionariosEntity> funcionarios;
 
     public String getCargo() {
         return cargo;

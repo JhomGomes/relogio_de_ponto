@@ -4,22 +4,21 @@ import com.example.RegistroDePonto.RegistroDePonto.Enuns.Cargo;
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.Estados;
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.StatusFuncionario;
 import com.example.RegistroDePonto.RegistroDePonto.dto.RequisicaoNovoFuncionario;
-import com.example.RegistroDePonto.RegistroDePonto.models.Funcionarios;
+import com.example.RegistroDePonto.RegistroDePonto.models.FuncionariosEntity;
 import com.example.RegistroDePonto.RegistroDePonto.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@Validated
+@Valid
 public class RelogioControler {
 
     @Autowired
@@ -27,9 +26,9 @@ public class RelogioControler {
 
     @GetMapping("/administrador")
     public ModelAndView findAll() {
-        List<Funcionarios> funcionariosList = this.funcionarioRepository.findAll();
+        List<FuncionariosEntity> funcionariosEntityList = this.funcionarioRepository.findAll();
         ModelAndView mv = new ModelAndView("administrador/paginaADM");
-        mv.addObject("funcionario", funcionariosList);
+        mv.addObject("funcionario", funcionariosEntityList);
         return mv;
     }
 
@@ -54,7 +53,7 @@ public class RelogioControler {
             return mv;
         } else {
             try {
-                Funcionarios funcionarios = requisicao.toFuncionario();
+                FuncionariosEntity funcionarios = requisicao.toFuncionario();
                 this.funcionarioRepository.save(funcionarios);
                 return new ModelAndView("redirect:/administrador");
             } catch (Exception e) {
@@ -81,8 +80,8 @@ public class RelogioControler {
             mv.addObject("estado", Estados.values());
             return mv;
         }else {
-            Funcionarios funcionarios = requisicao.toFuncionario();
-            this.funcionarioRepository.save(funcionarios);
+            FuncionariosEntity funcionariosEntity = requisicao.toFuncionario();
+            this.funcionarioRepository.save(funcionariosEntity);
             return new ModelAndView("redirect:/administrador");
         }
     }

@@ -3,15 +3,9 @@ package com.example.RegistroDePonto.RegistroDePonto.dto;
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.Cargo;
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.Estados;
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.StatusFuncionario;
-import com.example.RegistroDePonto.RegistroDePonto.models.Funcionarios;
-import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
+import com.example.RegistroDePonto.RegistroDePonto.models.FuncionariosEntity;
 
-import javax.validation.Valid;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 public class RequisicaoNovoFuncionario {
@@ -19,86 +13,56 @@ public class RequisicaoNovoFuncionario {
     @NotBlank
     private String nome;
 
-    @NotNull
     @NotBlank
     private String sobrenome;
 
     @NotBlank
-    @NotEmpty
     @javax.validation.constraints.Email
     private String Email;
 
     @NotNull
-    @NotEmpty
     private Long telefone;
 
     @NotBlank
-    @NotEmpty
     private String endereco;
 
     @NotBlank
-    @NotEmpty
     private String cidade;
 
-    /*@NotNull
-    @NotEmpty*/
-    //@DecimalMin(value = "0.01", inclusive = false)
     @NotNull
-    @NotEmpty
+    @Positive
     private int cep;
 
     @NotNull
+    @DecimalMin(value="0.0")
+    private BigDecimal salario;
+    @NotNull
+    @Positive
     private int numero_de_registro;
+
+    private Cargo cargo;
 
     private Estados estado;
 
     private StatusFuncionario statusFuncionario;
 
-    private Cargo cargo;
 
-    @NotNull
-    @DecimalMin(value = "0.00")
-    private BigDecimal salario;
+    public FuncionariosEntity toFuncionario() {
+        FuncionariosEntity funcionariosEntity = new FuncionariosEntity();
+        funcionariosEntity.setNome(this.nome);
+        funcionariosEntity.setSobrenome(this.sobrenome);
+        funcionariosEntity.setEmail(this.Email);
+        funcionariosEntity.setTelefone(this.telefone);
+        funcionariosEntity.setEndereco(this.endereco);
+        funcionariosEntity.setCidade(this.cidade);
+        funcionariosEntity.setCep(this.cep);
+        funcionariosEntity.setNumero_de_registro(this.numero_de_registro);
+        funcionariosEntity.setEstado(this.estado);
+        funcionariosEntity.setStatusFuncionario(this.statusFuncionario);
+        funcionariosEntity.setCargo(this.cargo);
+        funcionariosEntity.setSalario(this.salario);
 
-/*    public Funcionarios toFuncionario() {
-
-        if (telefone == null && !nome.isEmpty()  && nome == null && sobrenome == null && salario == null) {
-            throw new IllegalArgumentException("Campos obrigatórios não podem ser nulos.");
-        }
-
-        Funcionarios funcionarios = new Funcionarios();
-        funcionarios.setNome(this.nome);
-        funcionarios.setSobrenome(this.sobrenome);
-        funcionarios.setEmail(this.Email);
-        funcionarios.setTelefone(this.telefone);
-        funcionarios.setEndereco(this.endereco);
-        funcionarios.setCidade(this.cidade);
-        funcionarios.setCep(this.cep);
-        funcionarios.setNumero_de_registro(this.numero_de_registro);
-        funcionarios.setEstado(this.estado);
-        funcionarios.setStatusFuncionario(this.statusFuncionario);
-        funcionarios.setCargo(this.cargo);
-        funcionarios.setSalario(this.salario);
-
-        return funcionarios;
-    }*/
-
-    public Funcionarios toFuncionario() {
-        Funcionarios funcionarios = new Funcionarios();
-        funcionarios.setNome(this.nome);
-        funcionarios.setSobrenome(this.sobrenome);
-        funcionarios.setEmail(this.Email);
-        funcionarios.setTelefone(this.telefone);
-        funcionarios.setEndereco(this.endereco);
-        funcionarios.setCidade(this.cidade);
-        funcionarios.setCep(this.cep);
-        funcionarios.setNumero_de_registro(this.numero_de_registro);
-        funcionarios.setEstado(this.estado);
-        funcionarios.setStatusFuncionario(this.statusFuncionario);
-        funcionarios.setCargo(this.cargo);
-        funcionarios.setSalario(this.salario);
-
-        return funcionarios;
+        return funcionariosEntity;
     }
 
     public String getNome() {
@@ -107,38 +71,6 @@ public class RequisicaoNovoFuncionario {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Estados getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estados estado) {
-        this.estado = estado;
-    }
-
-    public StatusFuncionario getStatusFuncionario() {
-        return statusFuncionario;
-    }
-
-    public void setStatusFuncionario(StatusFuncionario statusFuncionario) {
-        this.statusFuncionario = statusFuncionario;
-    }
-
-    public Cargo getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(Cargo cargo) {
-        this.cargo = cargo;
-    }
-
-    public BigDecimal getSalario() {
-        return salario;
-    }
-
-    public void setSalario(BigDecimal salario) {
-        this.salario = salario;
     }
 
     public String getSobrenome() {
@@ -189,12 +121,44 @@ public class RequisicaoNovoFuncionario {
         this.cep = cep;
     }
 
+    public BigDecimal getSalario() {
+        return salario;
+    }
+
+    public void setSalario(BigDecimal salario) {
+        this.salario = salario;
+    }
+
     public int getNumero_de_registro() {
         return numero_de_registro;
     }
 
     public void setNumero_de_registro(int numero_de_registro) {
         this.numero_de_registro = numero_de_registro;
+    }
+
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
+
+    public Estados getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estados estado) {
+        this.estado = estado;
+    }
+
+    public StatusFuncionario getStatusFuncionario() {
+        return statusFuncionario;
+    }
+
+    public void setStatusFuncionario(StatusFuncionario statusFuncionario) {
+        this.statusFuncionario = statusFuncionario;
     }
 
     @Override
@@ -207,11 +171,11 @@ public class RequisicaoNovoFuncionario {
                 ", endereco='" + endereco + '\'' +
                 ", cidade='" + cidade + '\'' +
                 ", cep=" + cep +
+                ", salario=" + salario +
                 ", numero_de_registro=" + numero_de_registro +
+                ", cargo=" + cargo +
                 ", estado=" + estado +
                 ", statusFuncionario=" + statusFuncionario +
-                ", cargo=" + cargo +
-                ", salario=" + salario +
                 '}';
     }
 }

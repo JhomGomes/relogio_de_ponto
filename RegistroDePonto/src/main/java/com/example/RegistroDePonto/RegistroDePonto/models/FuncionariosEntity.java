@@ -5,13 +5,10 @@ import com.example.RegistroDePonto.RegistroDePonto.Enuns.Estados;
 import com.example.RegistroDePonto.RegistroDePonto.Enuns.StatusFuncionario;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-public class Funcionarios {
+public class FuncionariosEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,8 +16,6 @@ public class Funcionarios {
     @Column(nullable = false)
     private String nome;
 
-    @NotNull
-    @NotBlank
     @Column(nullable = false)
     private String sobrenome;
 
@@ -39,8 +34,6 @@ public class Funcionarios {
     @Column(nullable = false)
     private int cep;
 
-    @NotNull
-    @NotEmpty
     @Column(nullable = false)
     private BigDecimal salario;
     @Column(nullable = false)
@@ -55,19 +48,15 @@ public class Funcionarios {
     @Enumerated(EnumType.STRING)
     private StatusFuncionario statusFuncionario;
 
-    public Funcionarios() {
-    }
-
-    public StatusFuncionario getStatusFuncionario() {
-        return statusFuncionario;
-    }
-
-    public void setStatusFuncionario(StatusFuncionario statusFuncionario) {
-        this.statusFuncionario = statusFuncionario;
+    public FuncionariosEntity() {
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -76,14 +65,6 @@ public class Funcionarios {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Cargo getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(Cargo cargo) {
-        this.cargo = cargo;
     }
 
     public String getSobrenome() {
@@ -110,10 +91,6 @@ public class Funcionarios {
         this.telefone = telefone;
     }
 
-    public int getNumero_de_registro() {
-        return numero_de_registro;
-    }
-
     public String getEndereco() {
         return endereco;
     }
@@ -130,24 +107,12 @@ public class Funcionarios {
         this.cidade = cidade;
     }
 
-    public Estados getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estados estado) {
-        this.estado = estado;
-    }
-
     public int getCep() {
         return cep;
     }
 
     public void setCep(int cep) {
         this.cep = cep;
-    }
-
-    public void setNumero_de_registro(int numero_de_registro) {
-        this.numero_de_registro = numero_de_registro;
     }
 
     public BigDecimal getSalario() {
@@ -158,9 +123,41 @@ public class Funcionarios {
         this.salario = salario;
     }
 
+    public int getNumero_de_registro() {
+        return numero_de_registro;
+    }
+
+    public void setNumero_de_registro(int numero_de_registro) {
+        this.numero_de_registro = numero_de_registro;
+    }
+
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
+
+    public Estados getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estados estado) {
+        this.estado = estado;
+    }
+
+    public StatusFuncionario getStatusFuncionario() {
+        return statusFuncionario;
+    }
+
+    public void setStatusFuncionario(StatusFuncionario statusFuncionario) {
+        this.statusFuncionario = statusFuncionario;
+    }
+
     @Override
     public String toString() {
-        return "Funcionarios{" +
+        return "FuncionariosEntity{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", sobrenome='" + sobrenome + '\'' +
