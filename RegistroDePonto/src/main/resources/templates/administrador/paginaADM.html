@@ -68,7 +68,7 @@
                             <a class="nav-link active" aria-current="page" href="">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../funcionario">Cadastrar funcionario</a>
+                            <a class="nav-link" href="../funcionarios">Cadastrar funcionario</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -106,6 +106,7 @@
                             <th scope="col">Nome</th>
                             <th scope="col">Status</th>
                             <th scope="col">Cargo</th>
+                            <th scope="col">Detalhes</th>
                             <th scope="col">Atualizar</th>
                             <th scope="col">Excluir</th>
                         </tr>
@@ -116,6 +117,9 @@
                             <td th:text="${funcionario.nome}">nome do colaborador</td>
                             <td th:text="${funcionario.statusFuncionario.name()}">do colaborador</td>
                             <td th:text="${funcionario.cargo}">Cargo do colaborador</td>
+                            <td>
+                                <a type="button" th:href="@{/administrador/{funcionarioId}(funcionarioId = ${funcionario.id})}">Detalhes</a>
+                            </td>
                             <td>
                                 <button type="button">Atualizar</button>
                             </td>

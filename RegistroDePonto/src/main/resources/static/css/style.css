@@ -1,6 +1,6 @@
 body {
     box-sizing: border-box;
-    background-color: #e7e4e4;
+    background-color: #41464b;
 }
 
 .principal {
@@ -81,5 +81,5 @@ button {
 }
 
 #tabela-funcionario button:hover {
-    background-color: #0056b3; /* Cor de fundo azul mais escura ao passar o mouse */
+    background-color: #dee2e6; /* Cor de fundo azul mais escura ao passar o mouse */
 }

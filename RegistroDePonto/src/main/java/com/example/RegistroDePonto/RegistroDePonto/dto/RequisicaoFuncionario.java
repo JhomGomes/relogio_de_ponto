@@ -8,7 +8,7 @@ import com.example.RegistroDePonto.RegistroDePonto.models.FuncionariosEntity;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
-public class RequisicaoNovoFuncionario {
+public class RequisicaoFuncionario {
 
     @NotBlank
     private String nome;
@@ -63,6 +63,22 @@ public class RequisicaoNovoFuncionario {
         funcionariosEntity.setSalario(this.salario);
 
         return funcionariosEntity;
+    }
+
+    public void fromFuncionario(FuncionariosEntity funcionarios){
+
+        funcionarios.getNome();
+        funcionarios.getSobrenome();
+        funcionarios.getEmail();
+        funcionarios.getTelefone();
+        funcionarios.getEndereco();
+        funcionarios.getCidade();
+        funcionarios.getCep();
+        funcionarios.getNumero_de_registro();
+        funcionarios.getEstado();
+        funcionarios.getStatusFuncionario();
+        funcionarios.getCargo();
+        funcionarios.getSalario();
     }
 
     public String getNome() {
@@ -163,7 +179,7 @@ public class RequisicaoNovoFuncionario {
 
     @Override
     public String toString() {
-        return "RequisicaoNovoFuncionario{" +
+        return "RequisicaoFuncionario{" +
                 "nome='" + nome + '\'' +
                 ", sobrenome='" + sobrenome + '\'' +
                 ", Email='" + Email + '\'' +
