@@ -61,7 +61,6 @@ public class RequisicaoFuncionario {
         funcionariosEntity.setStatusFuncionario(this.statusFuncionario);
         funcionariosEntity.setCargo(this.cargo);
         funcionariosEntity.setSalario(this.salario);
-
         return funcionariosEntity;
     }
 
@@ -82,7 +81,6 @@ public class RequisicaoFuncionario {
     }
 
     public void fromFuncionario(FuncionariosEntity funcionarios){
-
         funcionarios.getNome();
         funcionarios.getSobrenome();
         funcionarios.getEmail();

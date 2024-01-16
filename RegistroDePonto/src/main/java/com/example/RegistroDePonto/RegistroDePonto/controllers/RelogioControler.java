@@ -7,6 +7,8 @@ import com.example.RegistroDePonto.RegistroDePonto.dto.RequisicaoFuncionario;
 import com.example.RegistroDePonto.RegistroDePonto.models.FuncionariosEntity;
 import com.example.RegistroDePonto.RegistroDePonto.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -106,12 +108,21 @@ public class RelogioControler {
             if (optional.isPresent()){
                 FuncionariosEntity funcionario = requisicao.toFuncionarioEntity(optional.get());
                 this.funcionarioRepository.save(funcionario);
-
                 return new ModelAndView("redirect:/administrador/{id}");
             }else {
-                System.out.println("******** OCORREU UM ERRO************");
                 return new ModelAndView("redirect:/editar/editar"); //fazer uma tratativa para quando nao achar
             }
+        }
+    }
+
+    @GetMapping("/administrador/{id}/delete")
+    public String delete(@PathVariable Long id) {
+        try {
+            this.funcionarioRepository.deleteById(id);
+            return "redirect:/administrador";
+        }catch (EmptyResultDataAccessException e){
+            System.out.println(e);
+            return "redirect:/administrador";
         }
     }
 }

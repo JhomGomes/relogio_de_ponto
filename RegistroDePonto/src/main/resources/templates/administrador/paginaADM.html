@@ -71,10 +71,6 @@
                             <a class="nav-link" href="../funcionarios">Cadastrar funcionario</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                cadastro e vizualização
-                            </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Cadastar Cargo</a></li>
                                 <li><a class="dropdown-item" href="#">Registro de ponto dos funcionario</a></li>
@@ -121,10 +117,10 @@
                                 <a type="button" th:href="@{/administrador/{funcionarioId}(funcionarioId = ${funcionario.id})}">Detalhes</a>
                             </td>
                             <td>
-                                <button type="button">Atualizar</button>
+                                <a type="button" th:href="@{/administrador/{funcionarioId}(funcionarioId = ${funcionario.id})}">Atualizar</a>
                             </td>
                             <td>
-                                <button type="button">Excluir</button>
+                                <a type="button" th:href="@{/administrador/{funcionarioId}/delete(funcionarioId = ${funcionario.id})}">Excluir</a>
                             </td>
                         </tr>
                     </tbody>
