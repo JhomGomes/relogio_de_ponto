@@ -25,36 +25,42 @@
 
 <h1>Editar cadastro do Colaborador</h1>
 
-<form th:object="${requisicaoFuncionario}">
+<form th:object="${requisicaoFuncionario}" th:action="@{/administrador/{id}(id = ${funcionario.id})}" method="post">
     <div class="container mt-4">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label>Nome</label>
-                <input type="text" class="form-control" id="nome" th:placeholder="${funcionario.nome}">
+                <input type="text" class="form-control" th:errorclass="is-invalid" id="nome" th:field="${funcionario.nome}">
+                <div class="invalid-feedback" th:errors="*{nome}"></div>
             </div>
             <div class="form-group col-md-6">
                 <label for="sobrenome">Sobrenome</label>
-                <input type="text" class="form-control" id="sobrenome" th:placeholder="${funcionario.sobrenome}">
+                <input type="text" class="form-control" th:errorclass="is-invalid" id="sobrenome" th:field="${funcionario.sobrenome}">
+                <div class="invalid-feedback" th:errors="*{sobrenome}"></div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" th:placeholder="${funcionario.Email}">
+                <input type="email" class="form-control" th:errorclass="is-invalid" id="email" th:field="${funcionario.Email}">
+                <div class="invalid-feedback" th:errors="*{Email}"></div>
             </div>
             <div class="form-group col-md-6">
                 <label for="telefone">Telefone</label>
-                <input type="tel" class="form-control" id="telefone" th:placeholder="${funcionario.telefone}">
+                <input type="tel" class="form-control" th:errorclass="is-invalid" id="telefone" th:field="${funcionario.telefone}">
+                <div class="invalid-feedback" th:errors="*{telefone}"></div>
             </div>
         </div>
         <div class="form-group">
             <label for="endereco">Endereço</label>
-            <input type="text" class="form-control" id="endereco" th:placeholder="${funcionario.endereco}">
+            <input type="text" class="form-control" th:errorclass="is-invalid" id="endereco" th:field="${funcionario.endereco}">
+            <div class="invalid-feedback" th:errors="*{endereco}"></div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="cidade">Cidade</label>
-                <input type="text" class="form-control" id="cidade" th:placeholder="${funcionario.cidade}">
+                <input type="text" class="form-control" th:errorclass="is-invalid" id="cidade" th:field="${funcionario.cidade}">
+                <div class="invalid-feedback" th:errors="*{cidade}"></div>
             </div>
             <div class="form-group col-md-4">
                 <label for="estado">Estado</label>
@@ -64,26 +70,28 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="cep">CEP</label>
-                <input type="text" class="form-control" id="cep" th:placeholder="${funcionario.cep}">
+                <input type="text" class="form-control" th:errorclass="is-invalid" id="cep" th:field="${funcionario.cep}">
+                <div class="invalid-feedback" th:errors="*{cep}"></div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="cargo">Cargo</label>
                 <select id="cargo" class="form-control" th:field="*{cargo}">
-                    <option th:each="cargo : ${cargo}" th:value="${cargo}" th:text="${cargo}"></option>
+                    <option th:each="cargo : ${cargo}" th:errorclass="is-invalid" th:value="${cargo}" th:text="${cargo}"></option>
                 </select>
             </div>
             <div class="form-group col-md-6">
                 <label for="salario">Salário</label>
-                <input type="text" class="form-control" id="salario" th:placeholder="${funcionario.salario}">
+                <input type="text" class="form-control" th:errorclass="is-invalid" id="salario" th:field="${funcionario.salario}">
+                <div class="invalid-feedback" th:errors="*{salario}"></div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="registro">Número de Registro</label>
-                <input type="number" class="form-control" id="registro" pattern="\d*"
-                       th:placeholder="${funcionario.salario}">
+                <input type="number" class="form-control" th:errorclass="is-invalid" id="registro" pattern="\d*" th:field="${funcionario.numero_de_registro}">
+                <div class="invalid-feedback" th:errors="*{numero_de_registro}"></div>
             </div>
 
             <div class="form-group col-md-6">

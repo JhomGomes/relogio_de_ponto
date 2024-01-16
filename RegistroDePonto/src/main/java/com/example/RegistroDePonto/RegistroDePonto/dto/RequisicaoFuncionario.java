@@ -65,6 +65,22 @@ public class RequisicaoFuncionario {
         return funcionariosEntity;
     }
 
+    public FuncionariosEntity toFuncionarioEntity(FuncionariosEntity funcionarios){
+        funcionarios.setNome(this.nome);
+        funcionarios.setSobrenome(this.sobrenome);
+        funcionarios.setEmail(this.Email);
+        funcionarios.setTelefone(this.telefone);
+        funcionarios.setEndereco(this.endereco);
+        funcionarios.setCidade(this.cidade);
+        funcionarios.setCep(this.cep);
+        funcionarios.setNumero_de_registro(this.numero_de_registro);
+        funcionarios.setEstado(this.estado);
+        funcionarios.setStatusFuncionario(this.statusFuncionario);
+        funcionarios.setCargo(this.cargo);
+        funcionarios.setSalario(this.salario);
+        return funcionarios;
+    }
+
     public void fromFuncionario(FuncionariosEntity funcionarios){
 
         funcionarios.getNome();

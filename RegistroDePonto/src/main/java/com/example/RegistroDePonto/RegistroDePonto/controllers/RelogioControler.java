@@ -90,6 +90,28 @@ public class RelogioControler {
         }else{
             return new ModelAndView("redirect:/administrador"); //fazer uma tratativa para quando nao achar
         }
+    }
 
+    @PostMapping("/administrador/{id}")
+    public ModelAndView update(@PathVariable Long id, RequisicaoFuncionario requisicao, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            ModelAndView mv = new ModelAndView("editar/editar");
+            mv.addObject("statusFuncionario", StatusFuncionario.values());
+            mv.addObject("cargo", Cargo.values());
+            mv.addObject("estado", Estados.values());
+            return mv;
+        }else {
+            Optional<FuncionariosEntity> optional = this.funcionarioRepository.findById(id);
+
+            if (optional.isPresent()){
+                FuncionariosEntity funcionario = requisicao.toFuncionarioEntity(optional.get());
+                this.funcionarioRepository.save(funcionario);
+
+                return new ModelAndView("redirect:/administrador/{id}");
+            }else {
+                System.out.println("******** OCORREU UM ERRO************");
+                return new ModelAndView("redirect:/editar/editar"); //fazer uma tratativa para quando nao achar
+            }
+        }
     }
 }
