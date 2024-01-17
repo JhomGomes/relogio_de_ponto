@@ -78,10 +78,11 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="pesquisar funcionario"
-                            aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">pesquisar</button>
+                    <form th:action="@{/pesquisar}" method="post">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Pesquisar funcionário" name="termoPesquisa">
+                            <button class="btn btn-outline-secondary" type="submit">Pesquisar</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -94,12 +95,12 @@
         <div class="card" id="tabela-funcionario">
             <header class="tabela">
                 <table class="table">
-                    <h5 class="card-title">Lista de funcionariosEntity</h5>
+                    <h5 class="card-title">Funcionarios</h5>
                     <hr>
                     <thead>
                         <tr>
                             <th scope="col">Registro</th>
-                            <th scope="col">Nome</th>
+                            <th scope="col" data-sortable="true">Nome</th>
                             <th scope="col">Status</th>
                             <th scope="col">Cargo</th>
                             <th scope="col">Detalhes</th>
@@ -108,7 +109,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr  th:each="funcionario : ${funcionario}">
+                        <tr  th:each="funcionario, iterStat : ${funcionario}" th:if="${iterStat.index < 10}">
                             <th scope="row" th:text="${funcionario.id}">ID</th>
                             <td th:text="${funcionario.nome}">nome do colaborador</td>
                             <td th:text="${funcionario.statusFuncionario.name()}">do colaborador</td>
@@ -128,14 +129,14 @@
                 </table>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-end">
-                        <li class="page-item disabled">
-                            <a class="page-link">Previous</a>
+                        <li class="page-item" th:class="${#iterStat != null and #iterStat.index == 0} ? 'page-item disabled' : 'page-item'">
+                            <a class="page-link" th:href="@{/pagina(p=${iterStat != null ? iterStat.index - 1 : 0})}">Previous</a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
+                        <li class="page-item" th:each="i : ${#numbers.sequence(0, funcionario.size div 10 - 1)}">
+                            <a class="page-link" th:href="@{/pagina(p=${i})}" th:text="${i + 1}"></a>
+                        </li>
+                        <li class="page-item" th:class="${#iterStat != null and iterStat.index == funcionario.size div 10 - 1} ? 'page-item disabled' : 'page-item'">
+                            <a class="page-link" th:href="@{/pagina(p=${iterStat != null ? iterStat.index + 1 : 0})}">Next</a>
                         </li>
                     </ul>
                 </nav>

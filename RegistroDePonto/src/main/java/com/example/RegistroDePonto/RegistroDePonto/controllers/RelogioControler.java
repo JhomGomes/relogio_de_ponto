@@ -25,6 +25,12 @@ public class RelogioControler {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
+    @RequestMapping("/login")
+    public ModelAndView login(){
+        ModelAndView mv = new ModelAndView("login/paginaLogin");
+        return mv;
+    }
+
     @GetMapping("/administrador")
     public ModelAndView findAll() {
         List<FuncionariosEntity> funcionariosEntityList = this.funcionarioRepository.findAll();
@@ -72,6 +78,17 @@ public class RelogioControler {
         }else{
             return new ModelAndView("redirect:/administrador"); //fazer uma tratativa para quando nao achar
         }
+    }
+
+    @GetMapping("/administrador/next")
+    public String getPagina(@RequestParam long id) {
+        // Lógica para carregar os registros da página
+        //List<Funcionario> funcionarios = carregarRegistrosDaPagina(pagina);
+
+        // Adiciona os funcionários ao modelo
+        //model.addAttribute("funcionarios", funcionarios);
+
+        return "administrador/paginaADM";
     }
 
     @GetMapping("/administrador/{id}/editar")
